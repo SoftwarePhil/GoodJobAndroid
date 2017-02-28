@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.phil.httppost.data.model.Login;
 import com.example.phil.httppost.data.model.User;
@@ -31,13 +32,17 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                doLogin("se.phildimarco@gmail.com", "123456");
+                EditText emailText = (EditText) findViewById(R.id.emailText);
+                String email = emailText.getText().toString();
+                EditText passText = (EditText) findViewById(R.id.passwordText);
+                String password = passText.getText().toString();
+                doLogin(email, password );
             }
         });
     }
 
     public void doLogin(String email, String password){
-        goodJobService.login(new Login("se.phildimarco@gmail.com", "123456")).enqueue(new Callback<User>() {
+        goodJobService.login(new Login(email, password)).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.isSuccessful()){
