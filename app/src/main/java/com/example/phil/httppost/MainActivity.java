@@ -16,6 +16,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import android.content.SharedPreferences;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 String email = emailText.getText().toString();
                 EditText passText = (EditText) findViewById(R.id.passwordText);
                 String password = passText.getText().toString();
-                doLogin(email, password);
+                doLogin(email, password, view);
             }
         });
 
@@ -62,12 +63,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void doLogin(String email, String password) {
+    public void doLogin(String email, String password, View view) {
         goodJobService.login(new Login(email, password)).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
                     System.out.println("okay\n" + response.body().toString());
+                    SharedPreferences pref = MainActivity.this.getSharedPreferences("USER", MainActivity.MODE_PRIVATE);
+                    pref.edit().putString("user", response.body().getEmail()).commit();
+                    Intent intent = new Intent(MainActivity.this, JobFeed.class);
+                    startActivity(intent);
                 }
             }
 
