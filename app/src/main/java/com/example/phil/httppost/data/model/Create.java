@@ -6,7 +6,7 @@ package com.example.phil.httppost.data.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class User {
+public class Create {
 
     @SerializedName("tags")
     @Expose
@@ -23,14 +23,28 @@ public class User {
     @SerializedName("email")
     @Expose
     private String email;
-    @SerializedName("chat_ids")
+    @SerializedName("password")
     @Expose
-    private String[] chatIds;
+    private String password;
     @SerializedName("bio")
     @Expose
     private String bio;
+    @SerializedName("distance_range")
+    @Expose
+    private int distance_range;
 
-    public Object getTags() {
+    public Create(String name, String email, String password, String bio, String resume, String[] tags, int distance, String picture) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.bio = bio;
+        this.resume = resume;
+        this.tags = tags;
+        this.distance_range = distance;
+        this.picture = picture;
+    }
+
+    public String[] getTags() {
         return tags;
     }
 
@@ -38,7 +52,7 @@ public class User {
         this.tags = tags;
     }
 
-    public Object getResume() {
+    public String getResume() {
         return resume;
     }
 
@@ -70,12 +84,12 @@ public class User {
         this.email = email;
     }
 
-    public Object getChatIds() {
-        return chatIds;
+    public Object getPassword() {
+        return password;
     }
 
-    public void setChatIds(String[] chatIds) {
-        this.chatIds = chatIds;
+    public void setPassword(String chatIds) {
+        this.password = chatIds;
     }
 
     public String getBio() {
@@ -86,17 +100,16 @@ public class User {
         this.bio = bio;
     }
 
+    public int getDistance() {
+        return distance_range;
+    }
+
+    public void setDistance(int distance) {
+        this.distance_range = distance;
+    }
+
     public String toString(){
         return name + " \n" + bio + "\n" + resume + "\n" + tags + "\n";
     }
-
-    /*
-    return after loging in..
-
-    %GoodApi2.JobSeeker{bio: "I am a cooler gyu", chat_ids: [], distance_range: 19,
-    email: "abc@a.com", name: "Pat Patty", password: "123456", picture: "default",
-    resume: "Look at me !", seen: [], tags: ["jumping high", "getting high"]}
-
-     */
 
 }

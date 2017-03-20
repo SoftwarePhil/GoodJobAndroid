@@ -10,42 +10,42 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.phil.httppost.MainActivity">
 
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:id="@+id/textView" />
-
-    <Button
-        android:text="test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/login"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="70dp"
-        android:layout_marginBottom="163dp" />
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/passwordText"
+        android:text="password"
+        android:layout_below="@+id/emailText"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
-        android:layout_below="@+id/textView"
-        android:layout_alignEnd="@+id/login"
-        android:layout_marginEnd="14dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="65dp"
         android:id="@+id/emailText"
-        android:text="email" />
+        android:text="email"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/passwordText" />
 
-    <EditText
+    <Button
+        android:text="test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:layout_below="@+id/emailText"
-        android:layout_alignStart="@+id/emailText"
-        android:layout_marginTop="12dp"
-        android:id="@+id/passwordText"
-        android:text="password" />
+        android:id="@+id/login"
+        android:layout_marginTop="34dp"
+        android:layout_below="@+id/passwordText"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Sign Up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sign_up"
+        android:layout_marginTop="27dp"
+        android:layout_below="@+id/login"
+        android:layout_alignStart="@+id/login" />
 </RelativeLayout>
