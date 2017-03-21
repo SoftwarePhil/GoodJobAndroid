@@ -8,9 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.phil.httppost.data.model.User;
 import com.example.phil.httppost.data.remote.ApiUtils;
 import com.example.phil.httppost.data.remote.GoodJobService;
 import com.example.phil.httppost.data.model.Email;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -24,6 +26,7 @@ public class JobFeed extends AppCompatActivity {
     TextView jobName;
     private GoodJobService goodJobService;
     static final String NO_JOBS_MSG = "no more jobs!";
+    private String currentJob;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +34,13 @@ public class JobFeed extends AppCompatActivity {
         setContentView(R.layout.activity_job_feed);
         goodJobService = ApiUtils.getAPIService();
 
+        //pull user from shared pref
         SharedPreferences pref = JobFeed.this.getSharedPreferences("USER", MainActivity.MODE_PRIVATE);
-        email = pref.getString("user", null);
+        String json = pref.getString("user", null);
+        Gson gson = new Gson();
+        User user = gson.fromJson(json, User.class);
+        email = user.getEmail();
+
         fetchJobs();
         jobName = (TextView) findViewById(R.id.job);
 
@@ -46,33 +54,32 @@ public class JobFeed extends AppCompatActivity {
         });
 
         Button details = (Button) findViewById(R.id.details);
-        //when like button is clicked
         details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 jobDetails(view);
             }
         });
+
+        Button chats = (Button) findViewById(R.id.chats);
+        chats.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToChats(view);
+            }
+        });
     }
 
     public void likeJob(){
-        String likedJob = jobName.getText().toString();
 
-        if(jobList.size() > 0){
-            jobName.setText(jobList.get(0));
-            jobList.remove(0);
-            //send liked job to GoodApi
-        }
-        else{
-            jobName.setText(NO_JOBS_MSG);
-        }
+        setAndRemove();
+        //like job will go here!!
     }
 
     public void jobDetails(View view){
-        String job = jobName.getText().toString();
-        if(!job.equals(NO_JOBS_MSG)){
+        if(!currentJob.equals(NO_JOBS_MSG)){
             Intent intent = new Intent(JobFeed.this, JobView.class);
-            intent.putExtra("job", job);
+            intent.putExtra("job", currentJob);
             startActivity(intent);
         }
     }
@@ -84,10 +91,7 @@ public class JobFeed extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     jobList = (ArrayList)response.body();
 
-                    if(jobList.size() > 0){
-                        jobName.setText(jobList.get(0));
-                        jobList.remove(0);
-                    }
+                    setAndRemove();
                 }
             }
 
@@ -96,5 +100,24 @@ public class JobFeed extends AppCompatActivity {
                 System.out.println("FAIL" + t.toString());
             }
         });
-    };
+    }
+
+    private void setAndRemove(){
+        if(!jobList.isEmpty()){
+            currentJob = jobList.get(0);
+            String[] jobView = currentJob.split("&");
+            jobName.setText(jobView[0] + " ~ " + jobView[1]);
+            jobList.remove(0);
+        }
+        else{
+            currentJob = NO_JOBS_MSG;
+            jobName.setText(NO_JOBS_MSG);
+        }
+    }
+
+    public void goToChats(View view){
+        Intent intent = new Intent(JobFeed.this, ChatListActivity.class);
+        startActivity(intent);
+    }
+
 }

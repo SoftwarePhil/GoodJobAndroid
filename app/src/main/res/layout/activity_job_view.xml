@@ -14,9 +14,79 @@
         android:text="job name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="145dp"
+        android:layout_marginTop="39dp"
         android:id="@+id/jobName"
         android:textSize="36sp"
         android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textStyle="normal|bold" />
+
+    <TextView
+        android:text="Company"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:id="@+id/company"
+        android:textSize="36sp"
+        android:layout_below="@+id/jobName"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/description"
+        android:textSize="24sp"
+        android:textAlignment="textStart"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/company"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="post_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/post_date"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="60dp" />
+
+    <TextView
+        android:text="type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/employment_type"
+        android:textSize="18sp"
+        android:layout_below="@+id/description"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:text="salary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/employment_type"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="29dp"
+        android:id="@+id/salary"
+        android:textSize="24sp" />
+
+    <TextView
+        android:text="location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/salary"
+        android:layout_alignEnd="@+id/salary"
+        android:layout_marginTop="19dp"
+        android:id="@+id/location"
+        android:textSize="18sp" />
+
+    <TextView
+        android:text="tags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tags"
+        android:layout_above="@+id/post_date"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="21dp" />
 </RelativeLayout>

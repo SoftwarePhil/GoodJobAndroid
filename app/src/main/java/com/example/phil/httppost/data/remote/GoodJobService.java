@@ -1,9 +1,13 @@
 package com.example.phil.httppost.data.remote;
 
+import com.example.phil.httppost.data.model.JobRequest;
+import com.example.phil.httppost.data.model.Job;
 import com.example.phil.httppost.data.model.Login;
 import com.example.phil.httppost.data.model.User;
 import com.example.phil.httppost.data.model.Wrap;
 import com.example.phil.httppost.data.model.Email;
+import com.example.phil.httppost.data.model.Chat;
+import com.example.phil.httppost.data.model.ChatRequest;
 
 import java.util.ArrayList;
 
@@ -24,6 +28,14 @@ public interface GoodJobService {
     @Headers("Content-Type: application/json")
     @POST("job/job_feed")
     Call<ArrayList> jobList(@Body Email email);
+
+    @Headers("Content-Type: application/json")
+    @POST("chat/show")
+    Call<Chat> getChat(@Body ChatRequest chatRequest);
+
+    @Headers("Content-Type: application/json")
+    @POST("job/view")
+    Call<Job> getJob(@Body JobRequest jobRequest);
 }
 
 

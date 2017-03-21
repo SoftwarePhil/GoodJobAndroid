@@ -12,6 +12,7 @@ import com.example.phil.httppost.data.model.User;
 import com.example.phil.httppost.data.remote.ApiUtils;
 import com.example.phil.httppost.data.remote.GoodJobService;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.gson.Gson;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -70,7 +71,9 @@ public class MainActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     System.out.println("okay\n" + response.body().toString());
                     SharedPreferences pref = MainActivity.this.getSharedPreferences("USER", MainActivity.MODE_PRIVATE);
-                    pref.edit().putString("user", response.body().getEmail()).commit();
+                    Gson gson = new Gson();
+                    String json = gson.toJson(response.body());
+                    pref.edit().putString("user", json).commit();
                     Intent intent = new Intent(MainActivity.this, JobFeed.class);
                     startActivity(intent);
                 }

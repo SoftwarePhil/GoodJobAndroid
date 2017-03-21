@@ -51,4 +51,13 @@
         android:elevation="4dp"
         android:textSize="30sp" />
 
+    <Button
+        android:text="chats"
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/pass"
+        android:id="@+id/chats"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/like" />
+
 </RelativeLayout>

@@ -29,8 +29,11 @@ public class User {
     @SerializedName("bio")
     @Expose
     private String bio;
+    @SerializedName("distance_range")
+    @Expose
+    private int distance_range;
 
-    public Object getTags() {
+    public String[] getTags() {
         return tags;
     }
 
@@ -38,7 +41,7 @@ public class User {
         this.tags = tags;
     }
 
-    public Object getResume() {
+    public String getResume() {
         return resume;
     }
 
@@ -70,7 +73,7 @@ public class User {
         this.email = email;
     }
 
-    public Object getChatIds() {
+    public String[] getChatIds() {
         return chatIds;
     }
 
@@ -89,14 +92,4 @@ public class User {
     public String toString(){
         return name + " \n" + bio + "\n" + resume + "\n" + tags + "\n";
     }
-
-    /*
-    return after loging in..
-
-    %GoodApi2.JobSeeker{bio: "I am a cooler gyu", chat_ids: [], distance_range: 19,
-    email: "abc@a.com", name: "Pat Patty", password: "123456", picture: "default",
-    resume: "Look at me !", seen: [], tags: ["jumping high", "getting high"]}
-
-     */
-
 }
