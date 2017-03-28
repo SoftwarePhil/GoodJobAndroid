@@ -1,5 +1,7 @@
 package com.example.phil.httppost.data.remote;
 
+import com.example.phil.httppost.data.model.Company;
+import com.example.phil.httppost.data.model.CompanyRequest;
 import com.example.phil.httppost.data.model.JobRequest;
 import com.example.phil.httppost.data.model.Job;
 import com.example.phil.httppost.data.model.Login;
@@ -36,6 +38,10 @@ public interface GoodJobService {
     @Headers("Content-Type: application/json")
     @POST("job/view")
     Call<Job> getJob(@Body JobRequest jobRequest);
+
+    @Headers("Content-Type: application/json")
+    @POST("job/view")
+    Call<Company> getJob(@Body CompanyRequest companyRequest);
 }
 
 

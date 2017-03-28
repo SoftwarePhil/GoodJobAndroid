@@ -29,7 +29,8 @@
         <activity android:name=".JobFeed" />
         <activity android:name=".JobView" />
         <activity android:name=".ChatListActivity" />
-        <activity android:name=".ChatActivity"></activity>
+        <activity android:name=".ChatActivity" />
+        <activity android:name=".CompanyActivity"></activity>
     </application>
 
 </manifest>
