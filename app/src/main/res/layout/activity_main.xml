@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -11,41 +12,50 @@
     tools:context="com.example.phil.httppost.MainActivity">
 
     <EditText
+        android:id="@+id/passwordText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/passwordText"
-        android:text="123456"
+        android:hint="password"
+        android:inputType="textPassword"
         android:layout_below="@+id/emailText"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="29dp" />
 
     <EditText
+        android:id="@+id/emailText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
         android:ems="10"
-        android:layout_marginTop="65dp"
-        android:id="@+id/emailText"
-        android:text="se.phildimarco@gmail.com"
+        android:hint="email"
+        android:inputType="textEmailAddress"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/passwordText" />
+        android:layout_alignStart="@+id/passwordText"
+        android:layout_marginTop="134dp" />
 
     <Button
-        android:text="test"
+        android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/login"
-        android:layout_marginTop="34dp"
         android:layout_below="@+id/passwordText"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="19dp"
+        android:text="Log In" />
 
     <Button
         android:text="Sign Up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/sign_up"
-        android:layout_marginTop="27dp"
         android:layout_below="@+id/login"
-        android:layout_alignStart="@+id/login" />
+        android:layout_alignStart="@+id/login"
+        android:layout_marginTop="15dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="160dp"
+        app:srcCompat="@drawable/goodjob"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

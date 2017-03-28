@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 String email = emailText.getText().toString();
                 EditText passText = (EditText) findViewById(R.id.passwordText);
                 String password = passText.getText().toString();
+           //     startActivity(new Intent(MainActivity.this, TinderActivity.class));
                 doLogin(email, password, view);
             }
         });
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
 
     public void nextScreen(View view) {
         Intent intent = new Intent(this, SignUp.class);
