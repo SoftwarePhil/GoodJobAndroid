@@ -20,7 +20,7 @@ public class TinderActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_tinder);
 
         mSwipeView = (SwipePlaceHolderView)findViewById(R.id.swipeView);
         mContext = getApplicationContext();
@@ -37,6 +37,8 @@ public class TinderActivity extends AppCompatActivity{
         for(Profile profile : Utils.loadProfiles(this.getApplicationContext())){
             mSwipeView.addView(new TinderCard(mContext, profile, mSwipeView));
         }
+
+      //  for(JobFeed jobfeed:  )
 
         findViewById(R.id.rejectBtn).setOnClickListener(new View.OnClickListener() {
             @Override

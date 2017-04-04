@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.phil.httppost.data.model.JobPreview;
 import com.example.phil.httppost.data.model.User;
 import com.example.phil.httppost.data.remote.ApiUtils;
 import com.example.phil.httppost.data.remote.GoodJobService;
@@ -23,11 +22,11 @@ import retrofit2.Response;
 
 public class JobFeed extends AppCompatActivity {
     String email;
-    ArrayList<JobPreview> jobList = new ArrayList<JobPreview>();
+    ArrayList<String> jobList = new ArrayList<String>();
     TextView jobName;
     private GoodJobService goodJobService;
     static final String NO_JOBS_MSG = "no more jobs!";
-    private JobPreview currentJob;
+    private String currentJob;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,15 +77,15 @@ public class JobFeed extends AppCompatActivity {
     }
 
     public void jobDetails(View view){
-        if(currentJob != null){
+        if(!currentJob.equals(NO_JOBS_MSG)){
             Intent intent = new Intent(JobFeed.this, JobView.class);
-            intent.putExtra("job", currentJob.getId());
+            intent.putExtra("job", currentJob);
             startActivity(intent);
         }
     }
 
     public void fetchJobs(){
-        goodJobService.jobList(new Email(email)).enqueue(new Callback<ArrayList<JobPreview>>() {
+        goodJobService.jobList(new Email(email)).enqueue(new Callback<ArrayList>() {
             @Override
             public void onResponse(Call call, Response response) {
                 if (response.isSuccessful()) {
@@ -97,7 +96,7 @@ public class JobFeed extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ArrayList<JobPreview>> call, Throwable t) {
+            public void onFailure(Call<ArrayList> call, Throwable t) {
                 System.out.println("FAIL" + t.toString());
             }
         });
@@ -106,12 +105,12 @@ public class JobFeed extends AppCompatActivity {
     private void setAndRemove(){
         if(!jobList.isEmpty()){
             currentJob = jobList.get(0);
-            //String[] jobView = currentJob.split("&");
-            jobName.setText(currentJob.getName());
+            String[] jobView = currentJob.split("&");
+            jobName.setText(jobView[0] + " ~ " + jobView[1]);
             jobList.remove(0);
         }
         else{
-            currentJob = null;
+            currentJob = NO_JOBS_MSG;
             jobName.setText(NO_JOBS_MSG);
         }
     }

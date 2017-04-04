@@ -45,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
                 String email = emailText.getText().toString();
                 EditText passText = (EditText) findViewById(R.id.passwordText);
                 String password = passText.getText().toString();
-           //     startActivity(new Intent(MainActivity.this, TinderActivity.class));
-                doLogin(email, password, view);
+                startActivity(new Intent(MainActivity.this, TinderActivity.class));
+           //     doLogin(email, password, view);
             }
         });
 
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void doLogin(String email, String password, View view) {
+ /**   public void doLogin(String email, String password, View view) {
         goodJobService.login(new Login(email, password)).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("FAIL" + t.toString());
             }
         });
-    }
+    } **/
 
 
 }
