@@ -1,5 +1,6 @@
 package com.example.phil.httppost;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,7 +30,7 @@ public class SignUp extends AppCompatActivity {
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
-
+    String email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +52,7 @@ public class SignUp extends AppCompatActivity {
         String name = nameText.getText().toString();
 
         EditText emailText = (EditText) findViewById(R.id.emailText);
-        String email = emailText.getText().toString();
+        email = emailText.getText().toString();
 
         EditText passwordText = (EditText) findViewById(R.id.passwordText);
         String password = passwordText.getText().toString();
@@ -75,12 +76,18 @@ public class SignUp extends AppCompatActivity {
         doSignUp(name, email, password, bio, resume, tags, distance, picture);
     }
 
-    private void doSignUp(String name, String email, String password, String bio, String resume, String[] tags, int distance, String picture) {
-        goodJobService.create(new Wrap(new Create(name, email, password, bio, resume, tags, distance, picture))).enqueue(new Callback<User>() {
+    private void doSignUp(String name, String email2, String password, String bio, String resume, String[] tags, int distance, String picture) {
+        goodJobService.create(new Wrap(new Create(name, email2, password, bio, resume, tags, distance, picture))).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
                     System.out.println("okay user created\n" + response.body().toString());
+
+
+                    Uri uri = Uri.parse("http://ec2-34-207-144-227.compute-1.amazonaws.com:3000/app/job_seeker/" + email.replace(".", "!"));
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+
                     finishActivity(420);
                 }
             }
