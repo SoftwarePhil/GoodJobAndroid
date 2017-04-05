@@ -45,15 +45,14 @@ public class MainActivity extends AppCompatActivity {
                 String email = emailText.getText().toString();
                 EditText passText = (EditText) findViewById(R.id.passwordText);
                 String password = passText.getText().toString();
-                startActivity(new Intent(MainActivity.this, TinderActivity.class));
-           //     doLogin(email, password, view);
+                doLogin(email, password, view);
             }
         });
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              nextScreen(view);
+                nextScreen(view);
             }
         });
 
@@ -66,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
- /**   public void doLogin(String email, String password, View view) {
+    public void doLogin(String email, String password, View view) {
         goodJobService.login(new Login(email, password)).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
@@ -76,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                     Gson gson = new Gson();
                     String json = gson.toJson(response.body());
                     pref.edit().putString("user", json).commit();
-                    Intent intent = new Intent(MainActivity.this, JobFeed.class);
+                    Intent intent = new Intent(MainActivity.this, TinderActivity.class);
                     startActivity(intent);
                 }
             }
@@ -86,7 +85,8 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("FAIL" + t.toString());
             }
         });
-    } **/
+    }
 
 
 }
+
