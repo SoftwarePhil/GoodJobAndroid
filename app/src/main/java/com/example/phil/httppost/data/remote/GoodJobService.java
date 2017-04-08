@@ -2,13 +2,16 @@ package com.example.phil.httppost.data.remote;
 
 import com.example.phil.httppost.data.model.Company;
 import com.example.phil.httppost.data.model.CompanyRequest;
-import com.example.phil.httppost.data.model.JobPreview;
-import com.example.phil.httppost.data.model.Email;
+import com.example.phil.httppost.data.model.GoodResponse;
 import com.example.phil.httppost.data.model.JobRequest;
+import com.example.phil.httppost.data.model.JobPreview;
 import com.example.phil.httppost.data.model.Job;
+import com.example.phil.httppost.data.model.LikeRequest;
 import com.example.phil.httppost.data.model.Login;
+import com.example.phil.httppost.data.model.SendMessage;
 import com.example.phil.httppost.data.model.User;
 import com.example.phil.httppost.data.model.Wrap;
+import com.example.phil.httppost.data.model.Email;
 import com.example.phil.httppost.data.model.Chat;
 import com.example.phil.httppost.data.model.ChatRequest;
 
@@ -37,12 +40,20 @@ public interface GoodJobService {
     Call<Chat> getChat(@Body ChatRequest chatRequest);
 
     @Headers("Content-Type: application/json")
+    @POST("chat_android")
+    Call<Chat> sendMessage(@Body SendMessage sendMessage);
+
+    @Headers("Content-Type: application/json")
     @POST("job/view")
     Call<Job> getJob(@Body JobRequest jobRequest);
 
     @Headers("Content-Type: application/json")
-    @POST("job/view")
+    @POST("company/view")
     Call<Company> getJob(@Body CompanyRequest companyRequest);
+
+    @Headers("Content-Type: application/json")
+    @POST("job/like")
+    Call<GoodResponse> likeJob(@Body LikeRequest likeRequest);
 }
 
 

@@ -13,19 +13,46 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/chatLay"
-        android:layout_below="@+id/refresh"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="37dp">
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="410dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/chatLay"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true">
+
+            </LinearLayout>
+        </ScrollView>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/sendBox"
+                android:hint="Send A Message" />
+
+            <Button
+                android:text="send"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/send"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+        </TableRow>
 
     </LinearLayout>
 
-    <Button
-        android:text="refresh"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/refresh"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
 </RelativeLayout>

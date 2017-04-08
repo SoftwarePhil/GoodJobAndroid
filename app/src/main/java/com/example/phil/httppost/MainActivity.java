@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
                 String email = emailText.getText().toString();
                 EditText passText = (EditText) findViewById(R.id.passwordText);
                 String password = passText.getText().toString();
-           //     startActivity(new Intent(MainActivity.this, TinderActivity.class));
                 doLogin(email, password, view);
             }
         });
@@ -53,10 +52,14 @@ public class MainActivity extends AppCompatActivity {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              nextScreen(view);
+                nextScreen(view);
             }
         });
 
+        if(MainActivity.this.getSharedPreferences("USER", MainActivity.MODE_PRIVATE) != null){
+            Intent intent = new Intent(MainActivity.this, TinderActivity.class);
+            startActivity(intent);
+        }
     }
 
 
@@ -76,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                     Gson gson = new Gson();
                     String json = gson.toJson(response.body());
                     pref.edit().putString("user", json).commit();
-                    Intent intent = new Intent(MainActivity.this, JobFeed.class);
+                    Intent intent = new Intent(MainActivity.this, TinderActivity.class);
                     startActivity(intent);
                 }
             }
@@ -90,3 +93,4 @@ public class MainActivity extends AppCompatActivity {
 
 
 }
+

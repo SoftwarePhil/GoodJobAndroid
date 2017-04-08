@@ -4,7 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by phil on 3/20/17.
+ * Created by phil on 4/4/17.
  */
 
 public class JobPreview {
@@ -22,13 +22,11 @@ public class JobPreview {
 
     @SerializedName("description")
     @Expose
-    private String description;
+    private String desciption;
 
     @SerializedName("tags")
     @Expose
     private String[] tags;
-
-    public String getId() { return name; }
 
     public String getName() {
         return name;
@@ -38,9 +36,16 @@ public class JobPreview {
         return company;
     }
 
-    public String getDescription(){ return description; }
+    public String getDesciption() {
+        return desciption;
+    }
+
+    public String getId() {
+        return id;
+    }
 
     public String[] getTags() {
         return tags;
     }
 }
+
