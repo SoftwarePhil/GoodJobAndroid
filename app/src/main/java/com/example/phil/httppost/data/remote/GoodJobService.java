@@ -4,6 +4,7 @@ import com.example.phil.httppost.data.model.JobRequest;
 import com.example.phil.httppost.data.model.JobPreview;
 import com.example.phil.httppost.data.model.Job;
 import com.example.phil.httppost.data.model.Login;
+import com.example.phil.httppost.data.model.SendMessage;
 import com.example.phil.httppost.data.model.User;
 import com.example.phil.httppost.data.model.Wrap;
 import com.example.phil.httppost.data.model.Email;
@@ -33,6 +34,10 @@ public interface GoodJobService {
     @Headers("Content-Type: application/json")
     @POST("chat/show")
     Call<Chat> getChat(@Body ChatRequest chatRequest);
+
+    @Headers("Content-Type: application/json")
+    @POST("chat_android")
+    Call<Chat> sendMessage(@Body SendMessage sendMessage);
 
     @Headers("Content-Type: application/json")
     @POST("job/view")

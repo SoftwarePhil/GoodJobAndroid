@@ -8,6 +8,12 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class Message {
+    public Message(String sender_name, String sender, String content){
+        this.content = content;
+        this.sender = sender;
+        this.sender_name = sender_name;
+    }
+
     public String getTimestamp() {
         return timestamp;
     }
@@ -39,6 +45,4 @@ public class Message {
     @SerializedName("content")
     @Expose
     private String content;
-
-
 }

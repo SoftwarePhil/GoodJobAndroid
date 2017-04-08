@@ -56,6 +56,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        if(MainActivity.this.getSharedPreferences("USER", MainActivity.MODE_PRIVATE) != null){
+            Intent intent = new Intent(MainActivity.this, TinderActivity.class);
+            startActivity(intent);
+        }
     }
 
 

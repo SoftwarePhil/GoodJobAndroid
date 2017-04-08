@@ -1,10 +1,12 @@
 package com.example.phil.httppost;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 
 import com.example.phil.httppost.data.model.JobPreview;
 import com.example.phil.httppost.data.model.User;
@@ -74,6 +76,14 @@ public class TinderActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 mSwipeView.doSwipe(true);
+            }
+        });
+
+        Button chat = (Button) findViewById(R.id.chat);
+        chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(TinderActivity.this, ChatListActivity.class));
             }
         });
     }
