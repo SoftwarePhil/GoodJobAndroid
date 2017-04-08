@@ -8,7 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.phil.httppost.data.model.GoodResponse;
 import com.example.phil.httppost.data.model.JobPreview;
+import com.example.phil.httppost.data.model.LikeRequest;
 import com.example.phil.httppost.data.model.User;
 import com.example.phil.httppost.data.remote.ApiUtils;
 import com.example.phil.httppost.data.remote.GoodJobService;
@@ -31,8 +33,8 @@ public class TinderActivity extends AppCompatActivity{
     private SwipePlaceHolderView mSwipeView;
     private Context mContext;
     private ArrayList<JobPreview> jobs = new ArrayList<JobPreview>();
-    private GoodJobService goodJobService;
-    String email;
+    public GoodJobService goodJobService;
+    public String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,9 +64,6 @@ public class TinderActivity extends AppCompatActivity{
 
 
 
-
-      //  for(JobFeed jobfeed:  )
-
         findViewById(R.id.rejectBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,7 +89,7 @@ public class TinderActivity extends AppCompatActivity{
 
     public void drawCards(ArrayList<JobPreview> jobs){
         for(JobPreview job : jobs){
-            mSwipeView.addView(new JobCard(mContext, job, mSwipeView));
+            mSwipeView.addView(new JobCard(mContext, job, mSwipeView, goodJobService, email));
         }
     }
 
@@ -116,5 +115,32 @@ public class TinderActivity extends AppCompatActivity{
                 System.out.println("FAIL" + t.toString());
             }
         });
-}
+    }
+
+    public void sendLike(String job, String choice){
+
+        goodJobService.likeJob(new LikeRequest(job, email, choice)).enqueue(new Callback<GoodResponse>() {
+            @Override
+            public void onResponse(Call call, Response response) {
+                if (response.isSuccessful()) {
+                    System.out.println("job liked");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GoodResponse> call, Throwable t) {
+                System.out.println("FAIL" + t.toString());
+            }
+        });
+    }
+
+    /* on card click we need to make an activity with the job
+    public void jobDetails(View view){
+        if(!currentJob.equals(NO_JOBS_MSG)){
+            Intent intent = new Intent(JobFeed.this, JobView.class);
+            intent.putExtra("job", currentJob);
+            startActivity(intent);
+        }
+    }
+        */
 }
