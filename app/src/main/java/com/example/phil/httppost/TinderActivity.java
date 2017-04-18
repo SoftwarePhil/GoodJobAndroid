@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.example.phil.httppost.data.model.GoodResponse;
 import com.example.phil.httppost.data.model.JobPreview;
@@ -41,6 +42,16 @@ public class TinderActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_tinder);
         goodJobService = ApiUtils.getAPIService();
+
+        ImageButton msgButton = (ImageButton) findViewById(R.id.msgbtn);
+
+        msgButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(TinderActivity.this, ChatListActivity.class);
+                startActivity(myIntent);
+            }
+        });
 
         SharedPreferences pref = TinderActivity.this.getSharedPreferences("USER", MainActivity.MODE_PRIVATE);
         String json = pref.getString("user", null);
@@ -78,13 +89,7 @@ public class TinderActivity extends AppCompatActivity{
             }
         });
 
-        Button chat = (Button) findViewById(R.id.chat);
-        chat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(TinderActivity.this, ChatListActivity.class));
-            }
-        });
+
     }
 
     public void drawCards(ArrayList<JobPreview> jobs){
