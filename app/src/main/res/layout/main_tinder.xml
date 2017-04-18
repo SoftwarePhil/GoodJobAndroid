@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#bebebe">
+    android:background="#4db8ff">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
@@ -20,17 +20,20 @@
             android:id="@+id/acceptBtn"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="50dp"
             android:background="@drawable/ic_check"/>
+
+        <ImageButton
+            android:id="@+id/msgbtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="50dp"
+            android:background="@drawable/ic_message_button" />
     </LinearLayout>
+
     <com.mindorks.placeholderview.SwipePlaceHolderView
         android:id="@+id/swipeView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
-    <Button
-        android:text="Chat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/chat" />
 </FrameLayout>
