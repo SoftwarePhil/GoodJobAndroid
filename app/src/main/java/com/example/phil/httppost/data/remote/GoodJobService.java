@@ -49,7 +49,7 @@ public interface GoodJobService {
 
     @Headers("Content-Type: application/json")
     @POST("company/view")
-    Call<Company> getJob(@Body CompanyRequest companyRequest);
+    Call<Company> getCompany(@Body CompanyRequest companyRequest);
 
     @Headers("Content-Type: application/json")
     @POST("job/like")

@@ -26,7 +26,7 @@ public class Company {
 
     @SerializedName("list_of_locations")
     @Expose
-    private String[] list_of_locations;
+    private String list_of_locations;
 
     public String getName() {
         return name;
@@ -44,7 +44,11 @@ public class Company {
         return link_to_website;
     }
 
-    public String[] getList_of_locations() {
+    public String getList_of_locations() {
         return list_of_locations;
+    }
+
+    public String toString(){
+        return name +" " +bio + " " +logo +" " + link_to_website;
     }
 }
