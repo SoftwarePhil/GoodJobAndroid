@@ -16,12 +16,6 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/ic_cancel"/>
-        <ImageButton
-            android:id="@+id/acceptBtn"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="50dp"
-            android:background="@drawable/ic_check"/>
 
         <ImageButton
             android:id="@+id/msgbtn"
@@ -29,6 +23,14 @@
             android:layout_height="50dp"
             android:layout_marginLeft="50dp"
             android:background="@drawable/ic_message_button" />
+
+        <ImageButton
+            android:id="@+id/acceptBtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="50dp"
+            android:background="@drawable/ic_check"/>
+
     </LinearLayout>
 
     <com.mindorks.placeholderview.SwipePlaceHolderView
