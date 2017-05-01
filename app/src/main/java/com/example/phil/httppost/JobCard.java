@@ -125,11 +125,13 @@ public class JobCard {
                     company = (Company)response.body();
                     System.out.println(company.getLogo());
 
-                    final String encodedString = company.getLogo();
-                    final String pureBase64Encoded = encodedString.substring(encodedString.indexOf(",")  + 1);
-                    final byte[] decodedBytes = Base64.decode(pureBase64Encoded, Base64.DEFAULT);
-                    Glide.with(mContext).load(decodedBytes).into(profileImageView);
+                    if(!company.getLogo().equals("link-to-picture")){
+                        final String encodedString = company.getLogo();
+                        final String pureBase64Encoded = encodedString.substring(encodedString.indexOf(",")  + 1);
+                        final byte[] decodedBytes = Base64.decode(pureBase64Encoded, Base64.DEFAULT);
+                        Glide.with(mContext).load(decodedBytes).into(profileImageView);
                     //Glide.with(CaptchaFragment.this).load(decodedBytes).crossFade().fitCenter().into(mCatpchaImageView);
+                    }
                 }
             }
 
